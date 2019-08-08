@@ -1,4 +1,4 @@
-import PersianTs from '../src/persian-ts';
+import PersianTs from '../src/persian-ts'
 
 describe('arabic convert', () => {
   it('should convert arabic letters to persian', () => {
@@ -60,6 +60,7 @@ describe('etc', () => {
       'یک هزار و سیصد و هفتاد و چهار'
     )
     expect(new PersianTs('19').digitsToWords().toString()).toEqual('نوزده')
+    expect(new PersianTs('0').digitsToWords().toString()).toEqual('صفر')
   })
   it('should convert to Zero-width non-joiner correction', () => {
     expect(new PersianTs('آمده ای ولی من رفته ام و می آییم').halfSpace().toString()).toEqual(
