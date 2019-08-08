@@ -1,15 +1,33 @@
 // Import here Polyfills if needed. Recommended core-js (npm i -D core-js)
 // import "core-js/fn/array.find"
 import {
-    arabicChars, arabicNumbers, englishChar, englishNumbers, pattern, persianChar, persianChars,
-    persianNumbers, replacedPattern
-} from './constants';
+  arabicChars,
+  arabicNumbers,
+  englishChar,
+  englishNumbers,
+  pattern,
+  persianChar,
+  persianChars,
+  persianNumbers,
+  replacedPattern
+} from './constants'
 
+/**
+ * Main class for handling conversion
+ * it's using builder pattern to create the desired output
+ */
 export default class PersianTs {
+  /**
+   * Creates an instance of persian ts.
+   * @param value value to be transformed
+   */
   constructor(private value: string) {
     this.value = value.trim()
   }
-
+  /**
+   * converts string containing arabic characters to persian
+   * @returns  PersianTs instance
+   */
   arabicChar() {
     let tempValue = this.value
     const charsLen = arabicChars.length
@@ -20,6 +38,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * converts string containing arabic numerals to persian
+   * @returns  PersianTs instance
+   */
   arabicNumber() {
     let tempValue = this.value
     const numbersLen = arabicNumbers.length
@@ -30,6 +52,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * converts string containing persian numerals to english
+   * @returns  PersianTs instance
+   */
   persianNumber() {
     let tempValue = this.value
     const numbersLen = englishNumbers.length
@@ -41,6 +67,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * converts string containing english numerals to persian
+   * @returns  PersianTs instance
+   */
   englishNumber() {
     let tempValue = this.value
     const numbersLen = persianNumbers.length
@@ -51,6 +81,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * converts string containing persian and arabic numerals to english
+   * @returns  PersianTs instance
+   */
   toEnglishNumber() {
     let tempValue = this.value
     const numbersLen = englishNumbers.length
@@ -64,6 +98,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * Used to convert unreadable Persian characters in URL to readable characters.
+   * @returns  PersianTs instance
+   */
   fixURL() {
     let tempValue = this.value
     // Replace every %20 with _ to protect them from decodeURI
@@ -86,10 +124,18 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * Used to convert unreadable Persian characters in URL to readable characters.
+   * @returns  PersianTs instance
+   */
   decodeURL() {
     return this.fixURL()
   }
 
+  /**
+   * Used for converting Persian char to English char.
+   * @returns  PersianTs instance
+   */
   switchKey() {
     let tempValue = this.value
     const charsLen = persianChar.length
@@ -101,7 +147,10 @@ export default class PersianTs {
 
     return this
   }
-
+  /**
+   * Used for representing numbers as Persian words.
+   * @returns  PersianTs instance
+   */
   digitsToWords() {
     let tempValue = this.value
 
@@ -199,6 +248,10 @@ export default class PersianTs {
     return this
   }
 
+  /**
+   * Zero-width non-joiner correction
+   * @returns  PersianTs instance
+   */
   halfSpace() {
     let tempValue = this.value
 
@@ -212,7 +265,10 @@ export default class PersianTs {
 
     return this
   }
-
+  /**
+   * returns the converted string value.
+   * @returns  converted string value
+   */
   toString() {
     let tempValue = this.value
 
