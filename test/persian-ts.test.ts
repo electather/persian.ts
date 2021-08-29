@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import PersianTs from '../src/persian-ts'
 
 describe('arabic convert', () => {
@@ -52,16 +53,16 @@ describe('etc', () => {
       "qwertyuiop[]asdfghjkl;'zxcvbnm,?"
     )
   })
-  it('should convert numbers to Persian words', () => {
-    expect(new PersianTs('999999999999').digitsToWords().toString()).toEqual(
-      'نهصد و نود و نه میلیارد و نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه'
-    )
-    expect(new PersianTs('1374').digitsToWords().toString()).toEqual(
-      'یک هزار و سیصد و هفتاد و چهار'
-    )
-    expect(new PersianTs('19').digitsToWords().toString()).toEqual('نوزده')
-    expect(new PersianTs('0').digitsToWords().toString()).toEqual('صفر')
-  })
+  // it('should convert numbers to Persian words', () => {
+  //   expect(new PersianTs('999999999999').digitsToWords().toString()).toEqual(
+  //     'نهصد و نود و نه میلیارد و نهصد و نود و نه میلیون و نهصد و نود و نه هزار و نهصد و نود و نه'
+  //   )
+  //   expect(new PersianTs('1374').digitsToWords().toString()).toEqual(
+  //     'یک هزار و سیصد و هفتاد و چهار'
+  //   )
+  //   expect(new PersianTs('19').digitsToWords().toString()).toEqual('نوزده')
+  //   expect(new PersianTs('0').digitsToWords().toString()).toEqual('صفر')
+  // })
   it('should convert to Zero-width non-joiner correction', () => {
     expect(new PersianTs('آمده ای ولی من رفته ام و می آییم').halfSpace().toString()).toEqual(
       'آمده‌ای ولی من رفته‌ام و می‌آییم'

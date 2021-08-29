@@ -1,0 +1,23 @@
+{
+  "npm": {
+    "publish": true
+  },
+  "github": {
+    "release": true
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "angular",
+      "infile": "CHANGELOG.md"
+    }
+  },
+  "hooks": {
+    "before:init": [
+      "yarn jest",
+      "yarn build"
+    ]
+  }
+}

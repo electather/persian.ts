@@ -1,46 +1,49 @@
 {
   "name": "persian-ts",
   "version": "0.0.0-development",
-  "description": "",
-  "keywords": [],
-  "main": "dist/persian-ts.umd.js",
-  "module": "dist/persian-ts.es5.js",
-  "typings": "dist/types/persian-ts.d.ts",
+  "description": "Variety of Persian tools, all gathered in one place",
+  "keywords": [
+    "persian",
+    "utilities",
+    "text-to-number",
+    "number-to-text",
+    "decode-url",
+    "fix-url"
+  ],
+  "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "README.md"
   ],
   "author": "Omid Astaraki <omid.ocean@gmail.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/electather/persian.ts.git"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "license": "MIT",
   "engines": {
     "node": ">=6.0.0"
   },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.js": "eslint --cache --fix"
+  },
+  "homepage": "https://github.com/electather/persian.ts#readme",
   "scripts": {
     "lint": "tslint  --project tsconfig.json -t codeFrame 'src/**/*.ts' 'test/**/*.ts'",
-    "prebuild": "rimraf dist",
-    "build": "tsc --module commonjs && rollup -c rollup.config.ts && typedoc --out docs --target es6 --theme minimal --mode file src",
-    "start": "rollup -c rollup.config.ts -w",
-    "test": "jest --coverage",
-    "test:watch": "jest --coverage --watch",
-    "test:prod": "npm run lint && npm run test -- --no-cache",
-    "deploy-docs": "ts-node tools/gh-pages-publish",
-    "report-coverage": "cat ./coverage/lcov.info | coveralls",
-    "commit": "git-cz",
-    "semantic-release": "semantic-release",
-    "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
-    "precommit": "lint-staged",
-    "travis-deploy-once": "travis-deploy-once",
-    "prepush": "npm run test:prod && npm run build",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS"
-  },
-  "lint-staged": {
-    "{src,test}/**/*.ts": [
-      "prettier --write",
-      "git add"
-    ]
+    "build": "tsc",
+    "release": "release-it",
+    "eslint": "eslint 'src/**/*.ts'",
+    "eslint:fix": "eslint --fix 'src/**/*.ts'",
+    "prepare": "husky install"
   },
   "config": {
     "commitizen": {
@@ -74,49 +77,35 @@
       "src/*.{js,ts}"
     ]
   },
-  "prettier": {
-    "semi": false,
-    "singleQuote": true
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
     "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.5",
-    "colors": "^1.4.0",
-    "commitizen": "^4.2.4",
-    "coveralls": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "cz-conventional-changelog": "^3.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-prettier": "^3.4.1",
     "husky": "^7.0.2",
     "jest": "^27.1.0",
     "jest-config": "^27.1.0",
     "lint-staged": "^11.1.2",
     "lodash.camelcase": "^4.3.0",
     "prettier": "^2.3.2",
-    "prompt": "^1.2.0",
-    "replace-in-file": "^6.2.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.56.3",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-sourcemaps": "^0.6.3",
-    "rollup-plugin-typescript2": "^0.30.0",
-    "semantic-release": "^17.4.7",
-    "shelljs": "^0.8.4",
-    "travis-deploy-once": "^5.0.9",
+    "release-it": "^14.11.5",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^9.0.0",
-    "typedoc": "^0.21.8",
     "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "@release-it/conventional-changelog": "^3.3.0"
   }
 }
